@@ -8,20 +8,29 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.', 'pokedex 2022130015') }}</title>
-
+    <link rel="icon" href="{{ asset('storage/favicon.ico') }}" type="image/x-icon">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+<style>
+    body {
+    background-image: url("storage/background.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+</style>
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.', 'POKEDEX') }}
+                    <img src="{{ asset('storage/logonavbar.png') }}" alt="POKEDEX" style="height: 40px;"/>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
