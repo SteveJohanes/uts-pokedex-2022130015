@@ -52,9 +52,8 @@ class PokemonController extends Controller
         ]);
 
         $lastPokemon = DB::table('pokemons')->orderBy('id', 'desc')->first();
-        $lastId = $lastPokemon ? intval(substr($lastPokemon->id, 1)) : 0;
-        $newIdNumber = $lastId + 1;
-        $newId = str_pad($newIdNumber, 4, '0', STR_PAD_LEFT);
+        $lastId = $lastPokemon ? intval($lastPokemon->id) : 0;
+        $newId = str_pad($lastId + 1, 4, '0', STR_PAD_LEFT); // ID baru seperti 0001, 0002
 
         if ($request->hasFile('photo')) {
             $photoPath = $request->file('photo')->store('photos', 'public');
@@ -69,6 +68,7 @@ class PokemonController extends Controller
         return redirect()->route('pokemon.index')
             ->with('success', 'Pokemon berhasil ditambahkan.');
     }
+
 
     /**
      * Display the specified resource.
