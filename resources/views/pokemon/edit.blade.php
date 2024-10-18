@@ -57,7 +57,7 @@
                 <input type="number" class="form-control" id="defense" name="defense" value="{{ old('defense', $pokemon->defense) }}">
             </div>
             <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="is_legendary" name="is_legendary" {{ old('is_legendary', $pokemon->is_legendary) ? 'checked' : '' }}>
+                <input type="checkbox" class="form-check-input" id="is_legendary" name="is_legendary" value="1" {{ old('is_legendary', $pokemon->is_legendary) ? 'checked' : '' }}>
                 <label class="form-check-label" for="is_legendary">Is Legendary</label>
             </div>
             <div class="mb-3">

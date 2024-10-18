@@ -20,8 +20,11 @@ class PokemonController extends Controller
 
     public function index()
     {
+
         $pokemons = Pokemon::orderBy('id', 'asc')->paginate(20);
         return view('pokemon.index', compact('pokemons'));
+
+
     }
 
     /**
@@ -53,7 +56,7 @@ class PokemonController extends Controller
 
         $lastPokemon = DB::table('pokemons')->orderBy('id', 'desc')->first();
         $lastId = $lastPokemon ? intval($lastPokemon->id) : 0;
-        $newId = str_pad($lastId + 1, 4, '0', STR_PAD_LEFT); // ID baru seperti 0001, 0002
+        $newId = str_pad($lastId + 1, 4, '0', STR_PAD_LEFT);
 
         if ($request->hasFile('photo')) {
             $photoPath = $request->file('photo')->store('photos', 'public');
@@ -62,6 +65,7 @@ class PokemonController extends Controller
 
         $validated['id'] = $newId;
         $validated['is_legendary'] = $request->has('is_legendary');
+
 
         Pokemon::create($validated);
 
@@ -113,7 +117,8 @@ class PokemonController extends Controller
             $validated['photo'] = $photoPath;
         }
 
-        $validated['is_legendary'] = $request->has('is_legendary');
+        $validated['is_legendary'] = $request->has('is_legendary') ? true : false;
+
 
         $pokemon->update($validated);
 
